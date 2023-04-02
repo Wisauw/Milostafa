@@ -1,0 +1,16 @@
+{% extends 'Registro/base.html' %} 
+
+{% block content %}
+    <title>Ingresar registros</title>
+</head>
+
+<body>
+    <div class="registro">
+        <h1>Agregar Cargo</h1>
+        <form method="POST">
+            {% csrf_token %} {{ form.as_table }}
+            <button type="submit">GRABAR</button>
+        </form>
+    </div>
+</body>
+{% endblock %}

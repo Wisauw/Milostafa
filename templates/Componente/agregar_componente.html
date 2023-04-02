@@ -1,0 +1,16 @@
+{% extends 'Componente/base.html' %} 
+
+{% block content %}
+    <title>Ingresar Componente</title>
+</head>
+
+<body>
+    <div class="registro">
+        <h1>Agregar </h1>
+        <form id="formulario" method="POST" enctype= "multipart/form-data" >
+            {% csrf_token %} {{ form.as_table }}
+            <button type="submit">GRABAR</button>
+        </form>
+    </div>
+</body>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'Usuario/base/base.html' %} 
+
+{% block titulo_principal %} CRUD: Select * {% endblock %}
+
+{% block content %}
+
+		<br>
+
+		<div class="row">
+			<div class="col-md">
+				<div class="card card-body">
+					<h5>Usuarios</h5>
+				</div>
+				<div class="card card-body">
+					<table class="table">
+						<tr>
+							<th>ID</th>
+							<th>Nombre</th>
+							<th>Apellido</th>
+							<th>Email</th>
+						</tr>
+                    {% if object_list %}
+						{% for user in object_list %}
+						<tr>
+							<td>{{user.id}}</td>
+							<td>{{user.username}}</td>
+                            <td>{{user.last_name}}</td>
+                            <td>{{user.email}}</td>
+							</td>
+						</tr>
+							
+						{% endfor %}
+                    {% else %}
+                        <h1>No hay registros de usuarios</h1>
+                    {% endif %}
+					</table>
+				</div>
+			</div>
+			
+		</div>
+
+{% endblock content %}

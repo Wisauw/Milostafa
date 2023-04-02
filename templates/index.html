@@ -1,0 +1,475 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html lang="es">
+    {% load pwa %}
+    {% progressive_web_app_meta %}
+    
+<head>
+    <title>Milo'stafa</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
+    <link rel="stylesheet" href="/static/css/main.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!-- El icono del navegador se ve mal -->
+    <link rel="icon" href="/static/images/icono.png">
+
+
+</head>
+
+<body class="is-preload right-sidebar">
+	<div id="page-wrapper">
+
+		<!-- Header -->
+		<div id="header-wrapper">
+			<header id="header" class="container">
+
+				<!-- Logo -->
+				<div id="logo">
+					<img src="/static/images/logoN.png" alt="Milo'stafa">
+
+				</div>
+
+				<!-- Nav -->
+				<!-- Nav -->
+                {% if user.is_authenticated %}
+                <nav id="nav">
+                    <ul>
+                        <li class="current"><a href="{% url 'index' %}">Inicio</a></li>
+                        <li>                   
+                            <a href="#">Mi perfil</a>
+                            <ul>
+                                <li><a href="#">Mi Carrito</a></li>
+                                <li><a href="#">Mis Ordenes</a></li>
+                            </ul>
+                        <li>
+                            <a href="#">Componentes</a>
+                            <ul>
+                                <li><a href="#">Placa Base</a></li>
+                                <li><a href="#">Procesadores</a></li>
+                                <li><a href="#">Discos Duros</a></li>
+                                <li><a href="#">SSD</a></li>
+                                <li><a href="#">Tarjetas Gráficas</a></li>
+                                <li><a href="#">Memoria RAM</a></li>
+                                <li><a href="#">Gabinetes</a></li>
+                                <li><a href="#">Ventilación</a></li>
+                                <li><a href="#">Fuentes de poder</a></li>
+                                <li><a href="#">Conectividad</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="{% url 'ofertas' %}">Ultimas Ofertas</a></li>
+                        <li><a href="{% url 'faq' %}">Quienes Somos</a></li>
+                        {% if user.is_superuser %}
+                        <li>                   
+                            <a href="#">Admin</a>
+                            <ul>
+                                <li class="nav-item"><a  href="{% url 'listar_componente' %}">Crud componentes</a></li>
+                                <li class="nav-item"><a  href="{% url 'listar_cargos' %}">Crud Cargos</a></li>
+                                <li class="nav-item"><a  href="{% url 'list_user' %}">Crud Usuarios</a></li>
+                            </ul>
+                        <li>
+                        {% endif %}
+                        {% if user.is_authenticated %}
+                        <li><a href="{% url 'logout' %}">Cerrar Sesion</a></li>
+                        <span class="ml-md-5" style="color: blue;"><strong>Usuario: {{ user.get_username }}</strong></span>
+						{% endif %}
+                        <!-- <li><a href="no-sidebar.html">No Sidebar</a></li> -->
+                    </ul>
+                    <form class="search form-inline">
+                        <input class="form-control mr-sm-1" type="text" placeholder="Buscar en Milo'stafa">
+                        <button class="btn btn-outline-success my- my-sm-0 " type="submit">Buscar</button>
+                    </form>
+                </nav>
+                {% else %}
+                <nav id="nav">
+                    <ul>
+                        <li class="current"><a href="{% url 'index' %}">Inicio</a></li>
+                        <li>                   
+                            <a href="#">Mi perfil</a>
+                            <ul>
+                                <li><a href="#">Mi Carrito</a></li>
+                                <li><a href="#">Mis Ordenes</a></li>
+                            </ul>
+                        <li>
+                            <a href="#">Componentes</a>
+                            <ul>
+                                <li><a href="#">Placa Base</a></li>
+                                <li><a href="#">Procesadores</a></li>
+                                <li><a href="#">Discos Duros</a></li>
+                                <li><a href="#">SSD</a></li>
+                                <li><a href="#">Tarjetas Gráficas</a></li>
+                                <li><a href="#">Memoria RAM</a></li>
+                                <li><a href="#">Gabinetes</a></li>
+                                <li><a href="#">Ventilación</a></li>
+                                <li><a href="#">Fuentes de poder</a></li>
+                                <li><a href="#">Conectividad</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="{% url 'ofertas' %}">Ultimas Ofertas</a></li>
+                        <li><a href="{% url 'faq' %}">Quienes Somos</a></li>
+                        <li><a href="{% url 'login' %}">Iniciar Sesion</a></li>
+                        <!-- <li><a href="no-sidebar.html">No Sidebar</a></li> -->
+                    </ul>
+                    <form class="search form-inline">
+                        <input class="form-control mr-sm-1" type="text" placeholder="Buscar en Milo'stafa">
+                        <button class="btn btn-outline-success my- my-sm-0 " type="submit">Buscar</button>
+                    </form>
+                </nav>
+                {% endif %}
+                
+            </header>
+        </div>
+        <!-- Banner  -->
+        <!-- carousel -->
+        <div class="slideshow-container">
+
+            <!-- slides -->
+            <div class="mySlides">
+                <img src="/static/images/maxresdefault.jpg" style="width:100%" alt="black friday">
+            </div>
+            <div class="mySlides">
+                <img src="/static/images/Arma_a_tu_medida.jpg" style="width:100%" alt="pc armado">
+            </div>
+            <div class="mySlides">
+                <img src="/static/images/273777-cyber-monday-pc-componentes-ofertas-ordenadores-televisores-mas.jpg"
+                    style="width:100%" alt="Ryzen">
+            </div>
+
+            <!-- butons -->
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+        <br>
+
+        <!-- dosts -->
+        <div style="text-align:center">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+        </div>
+
+        <!-- Titulo -->
+        <div id="destacados">
+            <div id="destacado">
+                <div class="row">
+                    <div class=" col-12-medium">
+                        <h2>DESTACADOS</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Features -->
+        <div id="features-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-4 col-12-medium">
+
+                        <!-- Box 1 -->
+                        <section class="box feature">
+                            <a href="#" class="image featured"><img src="/static/images/aerocool.jpg" alt="Gabinete" /></a>
+                            <div class="inner">
+                                <header>
+                                    <h2>Gabinete Gamer Aerocool Airhawk Duo, Vidrio Templado, 2xRGB 20cm, 1xRGB 12cm,
+                                        E-ATX
+                                    </h2>
+                                </header>
+                                <h3> Antes $80.000</h3>
+                                <p>$72.900</p>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="col-4 col-12-medium">
+
+                        <!-- Box 2-->
+                        <section class="box feature">
+                            <a href="#" class="image featured"><img src="/static/images/i5_10400.jpg"
+                                    alt="procesador intel i5" /></a>
+                            <div class="inner">
+                                <header>
+                                    <h2>Procesador Intel® Core™ i5-10400 6-Core 2.9 GHz (12M Cache, up to 4.30 GHz)
+                                        LGA1200 65W
+                                    </h2>
+                                </header>
+                                <h3> Antes $245.000</h3>
+                                <p>$220.990 </p>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="col-4 col-12-medium">
+
+                        <!-- Box 3-->
+                        <section class="box feature">
+                            <a href="#" class="image featured"><img src="/static/images/silla_Gamer.jpg" alt="silla" /></a>
+                            <div class="inner">
+                                <header>
+                                    <h2>Silla Gamer Marca Turbus Pro
+                                        Inclinable
+                                    </h2>
+                                </header>
+                                <h3> Antes $160.000</h3>
+                                <p>$119.900 </p>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="col-4 col-12-medium">
+
+                        <!-- Box 4 -->
+                        <section class="box feature">
+                            <a href="#" class="image featured"><img src="/static/images/ryzen.png" alt="Ryzen 7" /></a>
+                            <div class="inner">
+                                <header>
+                                    <h2>Procesador AMD RYZEN 7 2700X 8-Core 3.7 GHz (4.3 GHz Max Boost)
+                                        Socket AM4 (2da Gen) 105W
+                                    </h2>
+                                </header>
+                                <h3> Antes $280.000</h3>
+                                <p>$230.000 </p>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="col-4 col-12-medium">
+
+                        <!-- Box 5 -->
+                        <section class="box feature">
+                            <a href="#" class="image featured"><img src="/static/images/rtx380.jpg" alt="Rtx3080" /></a>
+                            <div class="inner">
+                                <header>
+                                    <h2>Nvidia RTX 3080 1.71 Ghz 10GB
+                                        8704 Cuda Cores GDDR6X
+                                    </h2>
+                                </header>
+                                <!-- <h3> Antes $245.000</h3> -->
+                                <p>$800.000 </p>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="col-4 col-12-medium">
+
+                        <!-- Box 6 -->
+                        <section class="box feature">
+                            <a href="#" class="image featured"><img src="/static/images/h310m.png" alt="H310M" /></a>
+                            <div class="inner">
+                                <header>
+                                    <h2>Placa Madre Gigabyte GA-H310M H 2.0, H310,
+                                        LGA 1151-V2, 4x SATA 6Gb/s, Micro-ATX</h2>
+                                </header>
+                                <!-- <h3> Antes $245.000</h3> -->
+                                <p>$60.900 </p>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main -->
+            <div id="main-wrapper">
+                <div class="container">
+                    <div class="row gtr-200">
+                        <div class="col-4 col-12-medium">
+
+                            <!-- Sidebar -->
+                            <div id="sidebar">
+                                <section class="widget thumbnails">
+                                    <h3>Fotos aleatorias</h3>
+                                    <div class="grid">
+                                        <div class="row gtr-50">
+                                            <div class="col-6">
+                                                <a href="#" class="image fit"><img
+                                                        src="https://picsum.photos/200/300?random=1"
+                                                        alt="Foto aleatoria 1" /></a>
+                                            </div>
+                                            <div class="col-6">
+                                                <a href="#" class="image fit"><img
+                                                        src="https://picsum.photos/200/300?random=2"
+                                                        alt="Foto aleatoria 2" /></a>
+                                            </div>
+                                            <div class="col-6">
+                                                <a href="#" class="image fit"><img
+                                                        src="https://picsum.photos/200/300?random=3"
+                                                        alt="Foto aleatoria 3" /></a>
+                                            </div>
+                                            <div class="col-6">
+                                                <a href="#" class="image fit"><img
+                                                        src="https://picsum.photos/200/300?random=4"
+                                                        alt="Foto aleatoria 4" /></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+
+                        </div>
+                        <div class="col-8 col-12-medium imp-medium">
+
+                            <!-- Content -->
+                            <div id="content">
+                                <section class="last">
+                                    <h2>Quieres cotizar?</h2>
+                                    <!-- Formulario -->
+                                    <!-- Para evitar la caida del formulario al presionar el boton, modifique el metodo de POST a PUT-->
+                                    <form id="Formulario" class="form-inline" action="#" method="POST">
+
+                                        <div class="item-formulario form-group">
+                                            <label for="id_txtNombre">
+                                                Nombre
+                                            </label>
+                                            <input class="input" type="text" name="txtNombre" value="" required=""
+                                                placeholder="Ingrese su nombre" id="id_txtNombre"
+                                                onkeyup="return alphaOnly(event)" />
+                                        </div>
+
+                                        <div class="item-formulario form-group">
+                                            <label for="id_txtRut">
+                                                Rut
+                                            </label>
+                                            <input class="input" type="text" maxlength="10" name="txtRut" value=""
+                                                required="" placeholder="Ejemplo:11111111-1" id="id_txtRut"
+                                                onblur="onRutBlur(txtRut)" oninput="checkRut(this)" />
+                                        </div>
+
+                                        <div class="item-formulario form-group">
+                                            <label for="id_txtEmail">
+                                                Correo Electronico
+                                            </label>
+                                            <input class="input" type="email" name="txtEmail" value="" required=""
+                                                placeholder="Ingrese su email" id="id_txtEmail" />
+                                        </div>
+
+                                        <div class="item-formulario form-group">
+                                            <label for="id_txtMovil">
+                                                Numero de telefono
+                                            </label>
+                                            <input class="input" type="text" name="txtMovil" value="" required
+                                                placeholder="Ingrese su telefono" id="id_txtMovil"
+                                                onkeypress="return isNumberKey(event)" />
+                                        </div>
+
+                                        <div class="item-formulario form-group">
+                                            <Label>Codigo Postal</Label><input type="text" pattern="[0-9]{5}"
+                                                title="Five digit zip code" placeholder="Ingrese codigo postal"  required/>
+                                        </div>
+                                        <div class="item-formulario form-group">
+                                            <div class="col-sm-10 offset-sm-2">
+                                                <button type="submit" class="btn btn-primary">Enviar</button>
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+
+                                    </form>
+
+                                </section>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div id="footer-wrapper">
+                <footer id="footer" class="container">
+                    <div class="row">
+                        <div class="col-3 col-6-medium col-12-small">
+
+                            <!-- Links -->
+                            <section class="widget links">
+                                <h3>Random Stuff</h3>
+                                <ul class="style2">
+                                    <li><a href="#">Etiam feugiat condimentum</a></li>
+                                    <li><a href="#">Aliquam imperdiet suscipit odio</a></li>
+                                    <li><a href="#">Sed porttitor cras in erat nec</a></li>
+                                    <li><a href="#">Felis varius pellentesque potenti</a></li>
+                                    <li><a href="#">Nullam scelerisque blandit leo</a></li>
+                                </ul>
+                            </section>
+
+                        </div>
+                        <div class="col-3 col-6-medium col-12-small">
+
+                            <!-- Links -->
+                            <section class="widget links">
+                                <h3>Random Stuff</h3>
+                                <ul class="style2">
+                                    <li><a href="#">Etiam feugiat condimentum</a></li>
+                                    <li><a href="#">Aliquam imperdiet suscipit odio</a></li>
+                                    <li><a href="#">Sed porttitor cras in erat nec</a></li>
+                                    <li><a href="#">Felis varius pellentesque potenti</a></li>
+                                    <li><a href="#">Nullam scelerisque blandit leo</a></li>
+                                </ul>
+                            </section>
+
+                        </div>
+                        <div class="col-3 col-6-medium col-12-small">
+
+                            <!-- Links -->
+                            <section class="widget links">
+                                <h3>Random Stuff</h3>
+                                <ul class="style2">
+                                    <li><a href="#">Etiam feugiat condimentum</a></li>
+                                    <li><a href="#">Aliquam imperdiet suscipit odio</a></li>
+                                    <li><a href="#">Sed porttitor cras in erat nec</a></li>
+                                    <li><a href="#">Felis varius pellentesque potenti</a></li>
+                                    <li><a href="#">Nullam scelerisque blandit leo</a></li>
+                                </ul>
+                            </section>
+                        </div>
+                        <div class="col-3 col-6-medium col-12-small">
+                            <!-- Contact -->
+                            <section class="widget contact last">
+                                <h3>Contacta con nosotros</h3>
+                                <ul>
+                                    <li><a target="_blank" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                                            class="icon brands fa-twitter"><span class="label">Twitter</span></a>
+                                    </li>
+                                    <li><a target="_blank" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                                            class="icon brands fa-facebook-f"><span class="label">Facebook</span></a>
+                                    </li>
+                                    <li><a target="_blank" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                                            class="icon brands fa-instagram"><span class="label">Instagram</span></a>
+                                    </li>
+                                </ul>
+                                <p>1232 Avenida Los vios<br /> Coquimbo
+                                    <br /> (+569) 5859 5652</p>
+                            </section>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div id="copyright">
+                                <ul class="menu">
+                                    <li>&copy; Los Reviento. Todos los derechos reservados</li>
+                                    <li>Diseño: <a target="_blank"
+                                            href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Los
+                                            reviento Team / HTML5 UP</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="/static/js/script_carrousel.js"></script>
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/jquery.dropotron.min.js"></script>
+    <script src="/static/js/browser.min.js"></script>
+    <script src="/static/js/breakpoints.min.js"></script>
+    <script src="/static/js/util.js"></script>
+    <script src="/static/js/main.js"></script>
+    <script src="/static/js/validarRut.js"></script>
+    <script src="/static/js/script.js"></script>
+
+</body>
+
+</html>

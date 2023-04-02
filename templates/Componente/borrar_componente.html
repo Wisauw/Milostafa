@@ -1,0 +1,14 @@
+{% extends 'Componente/base.html' %} 
+
+{% block content %}
+    <div class="text-center">
+        <form method="post">
+            {% csrf_token %}
+
+            <p class="delete-msg">Estas seguro que deseas eliminar {{ object.nombre }}?</p>
+            <button class="btn btn-primary" type="submit">Si</button>
+            <a href="{% url 'listar_cargos' %}" class="btn btn-secondary">NO</a>
+            
+        </form>
+    </div>
+{% endblock %}

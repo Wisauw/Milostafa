@@ -1,0 +1,17 @@
+{% extends 'Registro/base.html' %}
+
+{% block content %}
+    <title>Editar Registros</title>
+</head>
+
+<body>
+    <div id="container">
+        <h1>Editar Cargo</h1>
+        <form method="POST">
+            {% csrf_token %} {{ form.as_table }}
+            <button type="submit">Editar</button>
+        </form>
+    </div>
+</body>
+
+{% endblock %}

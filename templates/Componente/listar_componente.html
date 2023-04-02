@@ -1,0 +1,61 @@
+{% extends 'Componente/base.html' %} 
+{% load static %}
+{% block titulo_principal %} CRUD: Select * {% endblock %}
+
+{% block content %}
+<!-- <form class="search form-inline" action="{% url 'search_results' %}" ethod="get">
+	<input class="form-control mr-sm-1" type="text" placeholder="Buscar Componente">
+	<a name="q" class="btn btn-success" href="{% url 'search_results'%}"><i class="fas fa-search"></i></a>
+</form> -->
+<form action="{% url 'search_results' %}" method="get">
+	<input name="q" type="text" placeholder="Buscar Componente por nombre">
+	
+  </form>
+		<br>
+		
+		<div class="row ">
+			<div class="col-md ">
+				
+				<div class="card card-body">
+					<h5>Componentes</h5>
+					
+				</div>
+				
+				<div class="card card-body">
+					<table class="table">
+						<tr>
+							<th>ID</th>
+							<th>Código</th>
+							<th>Nombre</th>
+							<th>Marca</th>
+							<th>Precio</th>
+							<th>Stock</th>
+							<th>Fotografía</th>
+							<th> <a class="btn btn-success" href="{% url 'agregar_componente'%}"><i class="fas fa-plus"></i></a> </th>
+							
+						</tr>
+
+						{% for i in object_list %}
+						<tr>
+							<td>{{i.id}}</td>
+							<td>{{i.codigo}}</td>
+							<td>{{i.nombre}}</td>
+							<td>{{i.marca}}</td>
+							<td>{{i.precio}}</td>
+							<td>{{i.stock}}</td>
+							<td><img src= ../../static/images/{{ i.fotografia }} style="width: 100px;"/> </td>
+							<td>
+								<a class="btn btn-success" href="{% url 'editar_componente' i.id %}"><i class="fas fa-edit"></i></a>
+								<a class="btn btn-danger" href="{% url 'borrar_componente' i.id %}"><i class="far fa-trash-alt"></i></a>
+							</td>
+						</tr>
+							
+						{% endfor %}
+						
+					</table>
+				</div>
+			</div>
+			
+		</div>
+
+{% endblock content %}

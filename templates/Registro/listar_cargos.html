@@ -1,0 +1,41 @@
+{% extends 'Registro/base.html' %} {% block titulo_principal %} CRUD: Select *
+{% endblock %} {% block content %} 
+
+<div class="row">
+    <div class="col-md">
+        <form action="{% url 'search_results_cargo' %}" method="get">
+            <input name="q" type="text" placeholder="Buscar Cargo por nombre">
+          </form>
+        <div class="card card-body">
+            <h5>Cargo</h5>
+            
+        </div>
+        
+        <div class="card card-body">
+            <table class="table">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Sueldo</th>
+                    <th>Accion</th>
+                    <th> <a class="btn btn-success" href="{% url 'agregar_cargo'%}"><i class="fas fa-plus"></i></a> </th>
+                </tr>
+                {% for i in object_list %}
+                <tr>
+                    <td>{{i.id}}</td>
+                    <td>{{i.nombre}}</td>
+                    <td>{{i.sueldo}}</td>
+                    <td>
+                        <a class="btn btn-success" href="{% url 'editar_cargo' i.id %}"><i class="fas fa-edit"></i></a>
+                        <a class="btn btn-danger" href="{% url 'borrar_cargo' i.id %}"><i class="far fa-trash-alt"></i></a>
+                    </td>
+                  </tr>
+                    
+                {% endfor %}
+                
+            </table>
+        </div>
+    </div>
+    
+</div>
+{% endblock %}

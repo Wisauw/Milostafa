@@ -1,0 +1,182 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html lang="es">
+
+	<head>
+		<title>Milo'stafa</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
+		<link rel="stylesheet" href="/static/css/main.css" />
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+			integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+		<!-- El icono del navegador se ve mal-->
+		<link rel="icon" href="/static/images/icono.png">
+	
+	
+	</head>
+
+<body class="is-preload right-sidebar">
+	<div id="page-wrapper">
+
+		<div id="header-wrapper">
+            <header id="header" class="container">
+
+                <!-- Logo -->
+                <div id="logo">
+                    <img src="/static/images/logoN.png" %}" alt="Milo'stafa">
+
+                </div>
+
+                <!-- Nav -->
+                <nav id="nav">
+                    <ul>
+                        <li class="current"><a href="{% url 'index' %}">Inicio</a></li>
+                        <li>
+                            <a href="#">Mi Perfil</a>
+                            <ul>
+                                <li><a href="#">Mi Carrito</a></li>
+                                <li><a href="#">Mis Ordenes</a></li>
+                            </ul>
+                        <li>
+                            <a href="#">Componentes</a>
+                            <ul>
+                                <li><a href="#">Placa Base</a></li>
+                                <li><a href="#">Procesadores</a></li>
+                                <li><a href="#">Discos Duros</a></li>
+                                <li><a href="#">SSD</a></li>
+                                <li><a href="#">Tarjetas Gráficas</a></li>
+                                <li><a href="#">Memoria RAM</a></li>
+                                <li><a href="#">Gabinetes</a></li>
+                                <li><a href="#">Ventilación</a></li>
+                                <li><a href="#">Fuentes de poder</a></li>
+                                <li><a href="#">Conectividad</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="{% url 'ofertas' %}">Ultimas Ofertas</a></li>
+                        <li><a href="{% url 'faq' %}">Quienes Somos</a></li>
+                        {% if user.is_superuser %}
+                        <li>                   
+                            <a href="">Admin</a>
+                            <ul>
+                                <li class="nav-item"><a  href="{% url 'listar_componente' %}">Crud componentes</a></li>
+								<li class="nav-item"><a  href="{% url 'listar_cargos' %}">Crud Cargos</a></li>
+								<li class="nav-item"><a  href="{% url 'list_user' %}">Crud Usuarios</a></li>                            
+							</ul>
+                        <li>
+						{% endif %}
+						{% if user.is_authenticated %}
+						<li><a href="{% url 'logout' %}">Cerrar Sesion</a></li>
+						{% endif %}
+                    </ul>
+                    <form class="search form-inline">
+                        <input class="form-control mr-sm-1" type="text" placeholder="Buscar en Milo'stafa">
+                        <button class="btn btn-outline-success my- my-sm-0 " type="submit">Buscar</button>
+                    </form>
+                </nav>
+
+            </header>
+        </div>
+        <div class="col-md-8">
+			{% block content %} 
+			{% endblock %}
+        </div>
+        
+       <!-- Footer -->
+	   <div id="footer-wrapper">
+		<footer id="footer" class="container">
+			<div class="row">
+				<div class="col-3 col-6-medium col-12-small">
+
+					<!-- Links -->
+					<section class="widget links">
+						<h3>Random Stuff</h3>
+						<ul class="style2">
+							<li><a href="#">Etiam feugiat condimentum</a></li>
+							<li><a href="#">Aliquam imperdiet suscipit odio</a></li>
+							<li><a href="#">Sed porttitor cras in erat nec</a></li>
+							<li><a href="#">Felis varius pellentesque potenti</a></li>
+							<li><a href="#">Nullam scelerisque blandit leo</a></li>
+						</ul>
+					</section>
+
+				</div>
+				<div class="col-3 col-6-medium col-12-small">
+
+					<!-- Links -->
+					<section class="widget links">
+						<h3>Random Stuff</h3>
+						<ul class="style2">
+							<li><a href="#">Etiam feugiat condimentum</a></li>
+							<li><a href="#">Aliquam imperdiet suscipit odio</a></li>
+							<li><a href="#">Sed porttitor cras in erat nec</a></li>
+							<li><a href="#">Felis varius pellentesque potenti</a></li>
+							<li><a href="#">Nullam scelerisque blandit leo</a></li>
+						</ul>
+					</section>
+
+				</div>
+				<div class="col-3 col-6-medium col-12-small">
+
+					<!-- Links -->
+					<section class="widget links">
+						<h3>Random Stuff</h3>
+						<ul class="style2">
+							<li><a href="#">Etiam feugiat condimentum</a></li>
+							<li><a href="#">Aliquam imperdiet suscipit odio</a></li>
+							<li><a href="#">Sed porttitor cras in erat nec</a></li>
+							<li><a href="#">Felis varius pellentesque potenti</a></li>
+							<li><a href="#">Nullam scelerisque blandit leo</a></li>
+						</ul>
+					</section>
+				</div>
+				<div class="col-3 col-6-medium col-12-small">
+					<!-- Contact -->
+					<section class="widget contact last">
+						<h3>Contacta con nosotros</h3>
+						<ul>
+							<li><a target="_blank" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+									class="icon brands fa-twitter"><span class="label">Twitter</span></a>
+							</li>
+							<li><a target="_blank" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+									class="icon brands fa-facebook-f"><span class="label">Facebook</span></a>
+							</li>
+							<li><a target="_blank" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+									class="icon brands fa-instagram"><span class="label">Instagram</span></a>
+							</li>
+						</ul>
+						<p>1232 Avenida Los vios<br /> Coquimbo
+							<br /> (+569) 5859 5652</p>
+					</section>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12">
+					<div id="copyright">
+						<ul class="menu">
+							<li>&copy; Los Reviento. Todos los derechos reservados</li>
+							<li>Diseño: <a target="_blank"
+									href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Los
+									reviento Team / HTML5 UP</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</div>
+</div>
+
+</div>
+
+<!-- Scripts -->
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/jquery.dropotron.min.js"></script>
+<script src="/static/js/browser.min.js"></script>
+<script src="/static/js/breakpoints.min.js"></script>
+<script src="/static/js/util.js"></script>
+<script src="/static/js/main.js"></script>
+<script src="/static/js/validarRut.js"></script>
+
+</body>
+
+</html>
